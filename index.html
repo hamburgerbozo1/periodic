@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!--Tavola periodica non professionale, è possibile che vi siano errori
+        This is an un-professional periodic table, there might still be some errors
+        Aceasta este o tabela periodica ne-profesionala, este posibil să conțină erori
+        Professional alternatives made by actual chemists:
+        https://ptable.com/ (exista si romana pe /?lang=ro)
+        https://tavolaperiodica.zanichelli.it/ in Italiano dalla zanichelli
+    -->
+    <head>
+        <title>Periodic Table of Elements</title>
+        <link rel="icon" type="image/png" sizes="32x32" href="./src/s1.png">
+        <meta charset="UTF-8">
+        <script src="./index.js"></script>
+        <link rel="stylesheet" href="./style.css">
+    </head>
+
+    <body>
+        <div class="top">
+            <div style="display:flex;justify-self: start;">
+                <p id="titlebar">Tavola periodica degli elementi</p>
+                <img src="./src/theme.png" class="themeicon" onclick="changetheme();">
+            </div>
+            <div style="position: relative; margin-right: 15px;">
+                <button id="lang-btn" onclick="changelang()">ENG</button>
+                <div id="lang-list" class="lang-list">
+                    <button onclick="load(en, 'en');">English</button>
+                    <button onclick="load(it, 'it');">Italiano</button>
+                    <button onclick="load(ro, 'ro');">Română</button>
+                </div>
+            </div>
+        </div>
+        <!--container-->
+        <div class="pre-table">
+            <!--table-->
+            <div class="table" id="table">Elements couldn't load correctly, try enabling javascript</div>
+            
+            <div id="dyn-card" class="element-card" style="display:none;">
+
+            </div>
+        </div>
+        <!-- proprietà 
+        main.html
+        -->
+
+
+        <script>
+            //lo script è molto corto, quindi ho preferito inserirlo direttamente nella pagina, rendendo esterni solo le definizioni
+            //this script is relatively short, so i decided to put it directly in the page, making only the definitions external 
+            const table = document.getElementById('table');
+            const card = document.getElementById('dyn-card');
+
+            var currentlang = null; let delay = 0;
+            const cellFormat = [...Array(9)].map(() => Array(19).fill(0)); //19-18 - row+1
+
+            function load(lang, str) {
+                currentlang = strings[str]; if(!table) { return; }
+                table.innerHTML = '';
+
+                //presets
+                document.title = currentlang.title; delay = 0;
+                document.getElementById('titlebar').textContent = currentlang.title;
+                document.getElementById('lang-btn').textContent = '🌐 ' + str.toUpperCase();
+                //x element
+                lang.forEach(x => cellFormat[x[0] - 1][x[1] - 1] = x);
+                for (let row = 0; row < cellFormat.length; row++) {
+                    for (let column = 0; column < 18; column++) {
+                        let element = cellFormat[row][column];
+                        let nX = document.createElement('div');
+                        nX.style.gridRow = row+1; nX.style.gridColumn = column+1;
+                        nX.style.animationDelay = (delay++ * 0.003) + 's';
+                        if (element) {
+                            const cellClass = `cell ${element[6].toLowerCase().replace(/\s+/g, '-')}`;
+                            nX.className = cellClass; nX.setAttribute('N', element[2]);
+                            nX.innerHTML = `<div class="n">${element[2]}</div><div class="symbol">${element[3]}</div><div class="elementname">${element[4]}</div>
+                            ${element[7] ? '<div class="radioactive">☢</div>' : ''}`
+                            nX.onclick = (e) => showcard(element, e);
+                        } else {
+                            nX.style.background = 'transparent'; nX.style.boxShadow = 'none'; nX.style.pointerEvents = 'none'; //i
+                        }
+                        table.appendChild(nX);
+                    }
+                }
+            }
+
+            //electrons
+            function getconf(z) {
+                const isn = gasnobili.some(x => x.z === z);
+                let n = gasnobili.filter(x => x.z <= z).pop(); let conf = '';
+                if (isn) { n = gasnobili.filter(x => x.z < z).pop(); }
+                let e = z; let s = 0;
+                if (n && n.z > 1) {
+                    conf += `[${n.symbol}] `;
+                    e -= n.z; let c = 0;
+                    for (let i = 0; i < sottolivelli.length; i++) {
+                        c += sottolivelli[i][1];
+                        if (c >= n.z) {
+                            s = i+1; break;
+                        }
+                    }
+                }
+                for (let i = s; i < sottolivelli.length && e > 0; i++) {
+                    let [ sb, m ] = sottolivelli[i]; //n-s
+                    let nz = Math.min(m, e); //iffull
+                    if (nz > 0) { conf +=  `${sb}<sup>${m}</sup> `};
+                    e -= nz;
+                }
+                return conf.trim(); //no spaces :ppp:
+            }
+
+            //cards
+            function showcard(element, eventh) {
+                const card = document.getElementById('dyn-card'); if(!card) { return; }
+                const classname = (element[6].toLowerCase()).replace(/\s+/g, '-');
+                let conf = null;
+                const oxidation = numossidi.find(x => x.n === element[2]).ox;
+                if (element[8]) { conf = element[8]; } else { conf = getconf(element[2]); }
+                card.innerHTML = `
+                <div>
+                    <div style="display:flex;flex-direction:row;">
+                        <div class="cell ${classname}" style="box-shadow: 0 2px 12px #0009;">
+                            <div class="n">${element[2]}</div>
+                            <div class="symbol">${element[3]}</div>
+                            <div class="elementname">${element[4]}</div>
+                        </div>
+                        <div class="card-symbol">${element[3]}</div>
+                    </div>
+                    <div style="margin-left:2px; margin-top:13px;" class="card-content">
+                        <div class="card-name" style="font-size:1.4em">${element[4]}</div>
+                        ${element[7]? '<div><b>'+ currentlang.radioactive + '</b> ☢</div>': ''}
+                        <div><b>${currentlang.atomicNumber}:</b> <span>${element[2]}</span></div>
+                        <div><b>${currentlang.symbol}:</b> <span>${element[3]}</span></div>
+                        <div><b>${currentlang.atomicMass}:</b> <span>${element[5]}</span></div>
+                        <div><b>${currentlang.oxState}:</b> <span>${oxidation}</span></div>
+                        <div><b>${currentlang.category}:</b> <span>${element[6]}</span></div>
+                        <div><b>${currentlang.electroConfig}:</b></div>
+                        <span>${conf}</span>
+                    </div>
+                </div>`;
+                card.style.display = 'flex'; card.className = 'element-card ' + classname;
+
+                const rect = event.currentTarget.getBoundingClientRect();
+                const cardRect = card.getBoundingClientRect();
+                let left = rect.right + 5;
+                let top = rect.top + window.scrollY;
+                card.style.position = 'absolute';
+                card.style.left = left + 'px';
+                card.style.top = top + 'px';
+                //put this AFTER
+                if (left + cardRect.width > window.innerWidth) {
+                    left = rect.left - cardRect.width - 5;
+                    card.style.left = left + 'px';
+                }
+                setTimeout(() => {
+                    document.addEventListener('click', (e) => {
+                        if (card.style.display !== 'none' && !card.contains(e.target) && !e.target.classList.contains('cell')) {
+                            card.style.display = 'none';
+                        }
+                    }, { once:true });
+                }, 1); //1 ms shall work with any browser nowaday
+            }
+
+            //change language list
+            function changelang() {
+                const langlist = document.getElementById('lang-list');
+                langlist.classList.toggle('show'); //meglio usare una classe
+                if (langlist.classList.contains('show')) {
+                    setTimeout(() => { //supporto per più browser
+                        document.addEventListener('click', (e) => {
+                            const btn = document.getElementById('lang-btn');
+                            if (!langlist.contains(e.target) && e.target !== btn) {
+                                langlist.classList.remove('show');
+                            }
+                        }, { once: true });
+                    }, 1);
+                }
+            }
+            const t = ['dark-theme', '', 'bg-theme'];
+            var ctheme = 1;
+            function changetheme() {
+                document.documentElement.classList.remove('dark-theme', 'bg-theme');
+                ctheme = (ctheme + 1) % t.length;
+                if (t[ctheme]) {
+                    document.documentElement.classList.add(t[ctheme]);
+                }
+                console.log(document.documentElement.classList);
+            }
+            //listeners
+            window.addEventListener('resize', () => {
+                console.log(window.innerWidth);
+                if (window.innerWidth < 1200) {
+                    //next time i open this i will set a warning layer in html.
+                    console.warn("If you opened dev tools, the window size got less than expected, and you might not see the alert, please find it and click ok.");
+                    alert('It seems your device window is too small, the table will not display as it should. If youre on mobile, please rotate your device.');
+                }
+            } );
+
+            //init
+            load(en, 'en');
+        </script>
+    </body>
+</html>
