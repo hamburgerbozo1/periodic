@@ -51,7 +51,7 @@
             const card = document.getElementById('dyn-card');
 
             var currentlang = null; let delay = 0;
-            const cellFormat = [...Array(9)].map(() => Array(19).fill(0)); //19-18 - row+1
+            const cellFormat = [...Array(9)].map(() => Array(18).fill(0)); //19-18 - row+1
 
             function load(lang, str) {
                 currentlang = strings[str]; if(!table) { return; }
@@ -63,15 +63,23 @@
                 document.getElementById('lang-btn').textContent = '🌐 ' + str.toUpperCase();
                 //x element
                 lang.forEach(x => cellFormat[x[0] - 1][x[1] - 1] = x);
+                for (let column = 0; column < 18; column++) {
+                    let nZ = document.createElement('div'); nZ.className = 'group';
+                    nZ.style.gridRow = 10; nZ.style.gridColumn = column+2;
+                    nZ.innerHTML = column+1; table.appendChild(nZ);
+                }
                 for (let row = 0; row < cellFormat.length; row++) {
+                    let nY = document.createElement('div'); nY.className = 'period';
+                    nY.style.gridRow = row+1; nY.style.gridColumn = 1;
+                    nY.innerHTML = row+1; table.appendChild(nY);
                     for (let column = 0; column < 18; column++) {
                         let element = cellFormat[row][column];
                         let nX = document.createElement('div');
-                        nX.style.gridRow = row+1; nX.style.gridColumn = column+1;
+                        nX.style.gridRow = row+1; nX.style.gridColumn = column+2;
                         nX.style.animationDelay = (delay++ * 0.003) + 's';
                         if (element) {
                             const cellClass = `cell ${element[6].toLowerCase().replace(/\s+/g, '-')}`;
-                            nX.className = cellClass; nX.setAttribute('N', element[2]);
+                            nX.className = cellClass; //nX.setAttribute('N', element[2]);
                             nX.innerHTML = `<div class="n">${element[2]}</div><div class="symbol">${element[3]}</div><div class="elementname">${element[4]}</div>
                             ${element[7] ? '<div class="radioactive">☢</div>' : ''}`
                             nX.onclick = (e) => showcard(element, e);
@@ -175,8 +183,9 @@
                     }, 1);
                 }
             }
-            const t = ['dark-theme', '', 'bg-theme'];
-            var ctheme = 1;
+
+            const t = ['', 'dark-theme', 'bg-theme'];
+            var ctheme = 0;
             function changetheme() {
                 document.documentElement.classList.remove('dark-theme', 'bg-theme');
                 ctheme = (ctheme + 1) % t.length;
