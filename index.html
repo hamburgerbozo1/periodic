@@ -228,13 +228,9 @@
             //load saved theme, wont put lang here so if it gets an error it wont fail everything
             try {
                 const st = localStorage.getItem('per-theme');
-                const lang = localStorage.getItem('per-lang');
                 if (st) {
                     document.documentElement.classList.add(st);
                     ctheme = t.indexOf(st);
-                }
-                if(lang) {
-                    load(window[lang], lang);
                 }
             } catch(e) { console.log(e); }
 
