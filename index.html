@@ -9,10 +9,20 @@
     -->
     <head>
         <title>Periodic Table of Elements</title>
-        <link rel="icon" type="image/png" sizes="32x32" href="./src/s1.png">
-        <meta charset="UTF-8">
+        
         <script src="./index.js"></script>
+        <link rel="icon" type="image/png" sizes="32x32" href="./src/s1.png">
         <link rel="stylesheet" href="./style.css">
+
+        <meta property="og:title" content="Periodic Table of Elements">
+        <meta property="og:description" content="User made simple periodic table of elements">
+        <meta property="og:type" content="website">
+        <meta property="og:image" content="./src/s1.png">
+        <meta property="og:url" content="https://periodic-sage.vercel.app/">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="User made periodic table of elements">
+        <meta name="keywords" content="periodic table, elements, chemistry, interactive, atom">
+        <meta charset="UTF-8">
     </head>
 
     <body>
@@ -20,9 +30,9 @@
             <p>Your device's screen is too small.<br>Please if you're on mobile, rotate your device.</p>
         </div>
         <div class="top">
-            <div style="display:flex;justify-self: start;">
+            <div style="display:flex;justify-self:start;">
                 <p id="titlebar">Tavola periodica degli elementi</p>
-                <img src="./src/theme.png" class="themeicon" onclick="changetheme();">
+                <img src="./src/theme.png" class="themeicon" alt="Themes" onclick="changetheme();">
             </div>
             <div style="position: relative; margin-right: 15px;">
                 <button id="lang-btn" onclick="changelang()">ENG</button>
@@ -68,7 +78,7 @@
                     document.title = currentlang.title; delay = 0;
                     document.getElementById('titlebar').textContent = currentlang.title;
                     document.getElementById('lang-btn').textContent = '🌐 ' + str.toUpperCase();
-                    localStorage.removeItem('per-lang'); //no overwrite issue
+                    localStorage.removeItem('per-lang'); //owf
                     localStorage.setItem('per-lang', str);
                     document.documentElement.lang = str;
                 } catch(e) {console.log(e); }
@@ -179,7 +189,7 @@
                         if (card.style.display !== 'none' && !card.contains(e.target) && !e.target.classList.contains('cell')) {
                             card.style.display = 'none';
                         }
-                    }, { once:true });
+                    });
                 }, 1); //1 ms shall work with any browser nowaday
             }
 
@@ -194,7 +204,7 @@
                             if (!langlist.contains(e.target) && e.target !== btn) {
                                 langlist.classList.remove('show');
                             }
-                        }, { once: true });
+                        });
                     }, 1);
                 }
             }
