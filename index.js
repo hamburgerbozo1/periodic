@@ -575,4 +575,18 @@ const numossidi = [
     { n: 117, ox: "-" },
     { n: 118, ox: "-" }
 ];
-  
+
+//page script
+function ahg() {
+    document.querySelectorAll('.cell').forEach(x => {
+        x.addEventListener('mouseenter', () => {
+            const fg = x.getAttribute('g'); const fp = x.getAttribute('p');
+            if (fg && fp) {
+                document.querySelectorAll(`.group[g="${fg}"], .period[p="${fp}"]`)?.forEach(z => z.classList.add('hg'));
+            }
+        });
+        x.addEventListener('mouseleave', () => {
+            document.querySelectorAll('.hg').forEach(y => y.classList.remove('hg'));
+        });
+    });
+}
