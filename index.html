@@ -16,6 +16,9 @@
     </head>
 
     <body>
+        <div class="widthalert">
+            <p>Your device's screen is too small.<br>Please if you're on mobile, rotate your device.</p>
+        </div>
         <div class="top">
             <div style="display:flex;justify-self: start;">
                 <p id="titlebar">Tavola periodica degli elementi</p>
@@ -53,30 +56,39 @@
             var currentlang = null; let delay = 0;
             const cellFormat = [...Array(9)].map(() => Array(18).fill(0)); //19-18 - row+1
 
+            //nessun blocco try principale perche la funzione è corta, ed è molto difficile che non riesca a trovare un elemento (html)
             function load(lang, str) {
                 currentlang = strings[str]; if(!table) { return; }
                 table.innerHTML = '';
 
                 //presets
-                document.title = currentlang.title; delay = 0;
-                document.getElementById('titlebar').textContent = currentlang.title;
-                document.getElementById('lang-btn').textContent = '🌐 ' + str.toUpperCase();
+                try {
+                    history.replaceState(null, '', `?lang=${str}`);
+                    document.getElementById('lang-list').classList.remove('show'); //una volta cambiate le proprietà il listener non funzionerà più
+                    document.title = currentlang.title; delay = 0;
+                    document.getElementById('titlebar').textContent = currentlang.title;
+                    document.getElementById('lang-btn').textContent = '🌐 ' + str.toUpperCase();
+                    localStorage.setItem('lang', str);
+                } catch(e) {console.log(e); }
                 //x element
                 lang.forEach(x => cellFormat[x[0] - 1][x[1] - 1] = x);
                 for (let column = 0; column < 18; column++) {
                     let nZ = document.createElement('div'); nZ.className = 'group';
                     nZ.style.gridRow = 10; nZ.style.gridColumn = column+2;
                     nZ.innerHTML = column+1; table.appendChild(nZ);
+                    nZ.setAttribute('g', column+1);
                 }
                 for (let row = 0; row < cellFormat.length; row++) {
                     let nY = document.createElement('div'); nY.className = 'period';
                     nY.style.gridRow = row+1; nY.style.gridColumn = 1;
                     nY.innerHTML = row+1; table.appendChild(nY);
+                    nY.setAttribute('p', row+1);
                     for (let column = 0; column < 18; column++) {
                         let element = cellFormat[row][column];
                         let nX = document.createElement('div');
                         nX.style.gridRow = row+1; nX.style.gridColumn = column+2;
                         nX.style.animationDelay = (delay++ * 0.003) + 's';
+                        nX.setAttribute('g', column+1); nX.setAttribute('p', row+1);
                         if (element) {
                             const cellClass = `cell ${element[6].toLowerCase().replace(/\s+/g, '-')}`;
                             nX.className = cellClass; //nX.setAttribute('N', element[2]);
@@ -89,6 +101,7 @@
                         table.appendChild(nX);
                     }
                 }
+                try { ahg(); } catch {}
             }
 
             //electrons
@@ -126,7 +139,7 @@
                 card.innerHTML = `
                 <div>
                     <div style="display:flex;flex-direction:row;">
-                        <div class="cell ${classname}" style="box-shadow: 0 2px 12px #0009;">
+                        <div class="cell ${classname} card" style="box-shadow: 0 2px 12px #0009; animation-duration:0.1s; opacity:1;">
                             <div class="n">${element[2]}</div>
                             <div class="symbol">${element[3]}</div>
                             <div class="elementname">${element[4]}</div>
@@ -193,19 +206,44 @@
                     document.documentElement.classList.add(t[ctheme]);
                 }
                 console.log(document.documentElement.classList);
+                try {
+                    localStorage.setItem('theme', t[ctheme]);
+                } catch(e) { console.log(e); }
             }
+
             //listeners
             window.addEventListener('resize', () => {
                 console.log(window.innerWidth);
-                if (window.innerWidth < 1200) {
-                    //next time i open this i will set a warning layer in html.
+                if (window.innerWidth < 800) {
+                    //made this in css, ill keep this anyways
                     console.warn("If you opened dev tools, the window size got less than expected, and you might not see the alert, please find it and click ok.");
                     alert('It seems your device window is too small, the table will not display as it should. If youre on mobile, please rotate your device.');
                 }
             } );
 
             //init
-            load(en, 'en');
+
+            //load saved theme, wont put lang here so if it gets an error it wont fail everything
+            try {
+                const st = localStorage.getItem('theme');
+                const lang = localStorage.getItem('lang');
+                if (st) {
+                    document.documentElement.classList.add(st);
+                    ctheme = t.indexOf(st);
+                }
+                if(lang) {
+                    load(window[lang], lang);
+                }
+            } catch(e) { console.log(e); }
+
+            //lang load
+            try {
+                const lang = localStorage.getItem('lang');
+                if(lang) {
+                    try { load(window[lang], lang); } catch(e) { load(en, 'en'); }
+                }
+            } catch(e) { console.log(e); load(en, 'en'); }
+
         </script>
     </body>
 </html>
