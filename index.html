@@ -48,7 +48,7 @@
 
 
         <script>
-            //lo script è molto corto, quindi ho preferito inserirlo direttamente nella pagina, rendendo esterni solo le definizioni
+            //lo script è molto corto, quindi ho preferito inserirlo dirett amente nella pagina, rendendo esterni solo le definizioni
             //this script is relatively short, so i decided to put it directly in the page, making only the definitions external 
             const table = document.getElementById('table');
             const card = document.getElementById('dyn-card');
@@ -68,7 +68,9 @@
                     document.title = currentlang.title; delay = 0;
                     document.getElementById('titlebar').textContent = currentlang.title;
                     document.getElementById('lang-btn').textContent = '🌐 ' + str.toUpperCase();
-                    localStorage.setItem('lang', str);
+                    localStorage.removeItem('per-lang'); //no overwrite issue
+                    localStorage.setItem('per-lang', str);
+                    document.documentElement.lang = str;
                 } catch(e) {console.log(e); }
                 //x element
                 lang.forEach(x => cellFormat[x[0] - 1][x[1] - 1] = x);
@@ -207,7 +209,7 @@
                 }
                 console.log(document.documentElement.classList);
                 try {
-                    localStorage.setItem('theme', t[ctheme]);
+                    localStorage.setItem('per-theme', t[ctheme]);
                 } catch(e) { console.log(e); }
             }
 
@@ -225,8 +227,8 @@
 
             //load saved theme, wont put lang here so if it gets an error it wont fail everything
             try {
-                const st = localStorage.getItem('theme');
-                const lang = localStorage.getItem('lang');
+                const st = localStorage.getItem('per-theme');
+                const lang = localStorage.getItem('per-lang');
                 if (st) {
                     document.documentElement.classList.add(st);
                     ctheme = t.indexOf(st);
@@ -238,9 +240,11 @@
 
             //lang load
             try {
-                const lang = localStorage.getItem('lang');
+                const lang = localStorage.getItem('per-lang');
                 if(lang) {
                     try { load(window[lang], lang); } catch(e) { load(en, 'en'); }
+                } else {
+                    load(en, 'en');
                 }
             } catch(e) { console.log(e); load(en, 'en'); }
 
