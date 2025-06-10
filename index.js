@@ -42,7 +42,7 @@ const strings = {
   aufbau, spesso perchè questo rende l'elemento più stabile, come specificato nelle eccezioni della regola di Madelung, (simile al principio di aufabu, ma un po' più complicato)
   Questo accade principalmente negli attinidi e lantanidi, in sottolivelli come d e f, che tendono ad essere più stabili se non pieni
 */
-var en = [
+const en = [
     //wire 
     //[0, 0, 0, "Wi", "Wire", "1", "Conductor according to mr white", false, "[Og] 5g<sup>28</sup>"]
     [1, 1, 1, "H", "Hydrogen", "1.008", "Nonmetal"],
@@ -75,32 +75,32 @@ var en = [
     [6, 2, 56, "Ba", "Barium", "137.33", "Alkaline Earth Metal"],
     [7, 2, 88, "Ra", "Radium", "(226)", "Alkaline Earth Metal", true],
 
-    [4, 3, 21, "Sc", "Scandium", "44.956", "Transition Metal", false, "[Ar] 3d1 4s2"],
-    [4, 4, 22, "Ti", "Titanium", "47.867", "Transition Metal", false, "[Ar] 3d2 4s2"],
-    [4, 5, 23, "V", "Vanadium", "50.942", "Transition Metal", false, "[Ar] 3d3 4s2"],
-    [4, 6, 24, "Cr", "Chromium", "51.996", "Transition Metal", false, "[Ar] 3d5 4s1"],
-    [4, 7, 25, "Mn", "Manganese", "54.938", "Transition Metal", false, "[Ar] 3d5 4s2"],
-    [4, 8, 26, "Fe", "Iron", "55.845", "Transition Metal", false, "[Ar] 3d6 4s2"],
-    [4, 9, 27, "Co", "Cobalt", "58.933", "Transition Metal", false, "[Ar] 3d7 4s2"],
-    [4, 10, 28, "Ni", "Nickel", "58.693", "Transition Metal", false, "[Ar] 3d8 4s2"],
-    [4, 11, 29, "Cu", "Copper", "63.546", "Transition Metal", false, "[Ar] 3d10 4s1"],
-    [5, 3, 39, "Y", "Yttrium", "88.906", "Transition Metal", false, "[Kr] 4d1 5s2"],
-    [5, 4, 40, "Zr", "Zirconium", "91.224", "Transition Metal", false, "[Kr] 4d2 5s2"],
-    [5, 5, 41, "Nb", "Niobium", "92.906", "Transition Metal", false, "[Kr] 4d4 5s1"],
-    [5, 6, 42, "Mo", "Molybdenum", "95.95", "Transition Metal", false, "[Kr] 4d5 5s1"],
-    [5, 7, 43, "Tc", "Technetium", "(98)", "Transition Metal", true, "[Kr] 4d5 5s2"],
-    [5, 8, 44, "Ru", "Ruthenium", "101.07", "Transition Metal", false, "[Kr] 4d7 5s1"],
-    [5, 9, 45, "Rh", "Rhodium", "102.91", "Transition Metal", false, "[Kr] 4d8 5s1"],
-    [5, 10, 46, "Pd", "Palladium", "106.42", "Transition Metal", false, "[Kr] 4d10"],
+    [4, 3, 21, "Sc", "Scandium", "44.956", "Transition Metal", false, "[Ar] 3d<sup>1</sup> 4s<sup>2</sup>"],
+    [4, 4, 22, "Ti", "Titanium", "47.867", "Transition Metal", false, "[Ar] 3d<sup>2</sup> 4s<sup>2</sup>"],
+    [4, 5, 23, "V", "Vanadium", "50.942", "Transition Metal", false, "[Ar] 3d<sup>3</sup> 4s<sup>2</sup>"],
+    [4, 6, 24, "Cr", "Chromium", "51.996", "Transition Metal", false, "[Ar] 3d<sup>5</sup> 4s<sup>1</sup>"],
+    [4, 7, 25, "Mn", "Manganese", "54.938", "Transition Metal", false, "[Ar] 3d<sup>5</sup> 4s<sup>2</sup>"],
+    [4, 8, 26, "Fe", "Iron", "55.845", "Transition Metal", false, "[Ar] 3d<sup>6</sup> 4s<sup>2</sup>"],
+    [4, 9, 27, "Co", "Cobalt", "58.933", "Transition Metal", false, "[Ar] 3d<sup>7</sup> 4s<sup>2</sup>"],
+    [4, 10, 28, "Ni", "Nickel", "58.693", "Transition Metal", false, "[Ar] 3d<sup>8</sup> 4s<sup>2</sup>"],
+    [4, 11, 29, "Cu", "Copper", "63.546", "Transition Metal", false, "[Ar] 3d<sup>10</sup> 4s<sup>1</sup>"],
+    [5, 3, 39, "Y", "Yttrium", "88.906", "Transition Metal", false, "[Kr] 4d<sup>1</sup> 5s<sup>2</sup>"],
+    [5, 4, 40, "Zr", "Zirconium", "91.224", "Transition Metal", false, "[Kr] 4d<sup>2</sup> 5s<sup>2</sup>"],
+    [5, 5, 41, "Nb", "Niobium", "92.906", "Transition Metal", false, "[Kr] 4d<sup>4</sup> 5s<sup>1</sup>"],
+    [5, 6, 42, "Mo", "Molybdenum", "95.95", "Transition Metal", false, "[Kr] 4d<sup>5</sup> 5s<sup>1</sup>"],
+    [5, 7, 43, "Tc", "Technetium", "(98)", "Transition Metal", true, "[Kr] 4d<sup>5</sup> 5s<sup>2</sup>"],
+    [5, 8, 44, "Ru", "Ruthenium", "101.07", "Transition Metal", false, "[Kr] 4d<sup>7</sup> 5s<sup>1</sup>"],
+    [5, 9, 45, "Rh", "Rhodium", "102.91", "Transition Metal", false, "[Kr] 4d<sup>8</sup> 5s<sup>1</sup>"],
+    [5, 10, 46, "Pd", "Palladium", "106.42", "Transition Metal", false, "[Kr] 4d<sup>10</sup>"],
     [5, 11, 47, "Ag", "Silver", "107.87", "Transition Metal"],
     [6, 4, 72, "Hf", "Hafnium", "178.49", "Transition Metal"],
     [6, 5, 73, "Ta", "Tantalum", "180.95", "Transition Metal"],
     [6, 6, 74, "W", "Tungsten", "183.84", "Transition Metal"],
     [6, 7, 75, "Re", "Rhenium", "186.21", "Transition Metal"],
     [6, 8, 76, "Os", "Osmium", "190.23", "Transition Metal"],
-    [6, 9, 77, "Ir", "Iridium", "192.22", "Transition Metal", false, "[Xe] 4f14 5d7 6s2"],
-    [6, 10, 78, "Pt", "Platinum", "195.08", "Transition Metal", false, "[Xe] 4f14 5d9 6s1"],
-    [6, 11, 79, "Au", "Gold", "196.97", "Transition Metal", false, "[Xe] 4f14 5d10 6s1"],
+    [6, 9, 77, "Ir", "Iridium", "192.22", "Transition Metal", false, "[Xe] 4f<sup>14</sup> 5d<sup>7</sup> 6s<sup>2</sup>"],
+    [6, 10, 78, "Pt", "Platinum", "195.08", "Transition Metal", false, "[Xe] 4f<sup>14</sup> 5d<sup>9</sub> 6s<sub>1</sub>"],
+    [6, 11, 79, "Au", "Gold", "196.97", "Transition Metal", false, "[Xe] 4f<sup>14</sup> 5d<sup>10</sup> 6s<sup>1</sup>"],
     [7, 4, 104, "Rf", "Rutherfordium", "(267)", "Transition Metal", true],
     [7, 5, 105, "Db", "Dubnium", "(270)", "Transition Metal", true],
     [7, 6, 106, "Sg", "Seaborgium", "(271)", "Transition Metal", true],
@@ -148,7 +148,7 @@ var en = [
     [8, 12, 66, "Dy", "Dysprosium", "162.50", "Lanthanide"],
     [8, 13, 67, "Ho", "Holmium", "164.93", "Lanthanide"],
     [8, 14, 68, "Er", "Erbium", "167.26", "Lanthanide"],
-    [8, 15, 69, "Tm", "Thulium", "168.93", "Lanthanide", false, "[Xe] 4f13 6s2"],
+    [8, 15, 69, "Tm", "Thulium", "168.93", "Lanthanide", false, "[Xe] 4f<sup>13</sup> 6s<sup>2</sup>"],
     [8, 16, 70, "Yb", "Ytterbium", "173.05", "Lanthanide"],
     [8, 17, 71, "Lu", "Lutetium", "174.97", "Lanthanide"],
 
@@ -174,7 +174,7 @@ var en = [
     [7, 13, 113, "Nh", "Nihonium", "(286)", "Unknown", true],
     [7, 15, 115, "Mc", "Moscovium", "(290)", "Unknown", true]
 ];
-var it = [
+const it = [
     [1, 1, 1, "H", "Idrogeno", "1.008", "Non Metallo"],
     [2, 14, 6, "C", "Carbonio", "12.011", "Non Metallo"],
     [2, 15, 7, "N", "Azoto", "14.007", "Non Metallo"],
@@ -205,32 +205,32 @@ var it = [
     [6, 2, 56, "Ba", "Bario", "137.33", "Metallo Alcalino Terroso"],
     [7, 2, 88, "Ra", "Radio", "(226)", "Metallo Alcalino Terroso", true],
 
-    [4, 3, 21, "Sc", "Scandio", "44.956", "Metallo di Transizione", false, "[Ar] 3d1 4s2"],
-    [4, 4, 22, "Ti", "Titanio", "47.867", "Metallo di Transizione", false, "[Ar] 3d2 4s2"],
-    [4, 5, 23, "V", "Vanadio", "50.942", "Metallo di Transizione", false, "[Ar] 3d3 4s2"],
-    [4, 6, 24, "Cr", "Cromo", "51.996", "Metallo di Transizione", false, "[Ar] 3d5 4s1"],
-    [4, 7, 25, "Mn", "Manganese", "54.938", "Metallo di Transizione", false, "[Ar] 3d5 4s2"],
-    [4, 8, 26, "Fe", "Ferro", "55.845", "Metallo di Transizione", false, "[Ar] 3d6 4s2"],
-    [4, 9, 27, "Co", "Cobalto", "58.933", "Metallo di Transizione", false, "[Ar] 3d7 4s2"],
-    [4, 10, 28, "Ni", "Nichel", "58.693", "Metallo di Transizione", false, "[Ar] 3d8 4s2"],
-    [4, 11, 29, "Cu", "Rame", "63.546", "Metallo di Transizione", false, "[Ar] 3d10 4s1"],
-    [5, 3, 39, "Y", "Ittrio", "88.906", "Metallo di Transizione", false, "[Kr] 4d1 5s2"],
-    [5, 4, 40, "Zr", "Zirconio", "91.224", "Metallo di Transizione", false, "[Kr] 4d2 5s2"],
-    [5, 5, 41, "Nb", "Niobio", "92.906", "Metallo di Transizione", false, "[Kr] 4d4 5s1"],
-    [5, 6, 42, "Mo", "Molibdeno", "95.95", "Metallo di Transizione", false, "[Kr] 4d5 5s1"],
-    [5, 7, 43, "Tc", "Tecnezio", "(98)", "Metallo di Transizione", true, "[Kr] 4d5 5s2"],
-    [5, 8, 44, "Ru", "Rutenio", "101.07", "Metallo di Transizione", false, "[Kr] 4d7 5s1"],
-    [5, 9, 45, "Rh", "Rodio", "102.91", "Metallo di Transizione", false, "[Kr] 4d8 5s1"],
-    [5, 10, 46, "Pd", "Palladio", "106.42", "Metallo di Transizione", false, "[Kr] 4d10"],
+    [4, 3, 21, "Sc", "Scandio", "44.956", "Metallo di Transizione", false, "[Ar] 3d<sup>1</sup> 4s<sup>2</sup>"],
+    [4, 4, 22, "Ti", "Titanio", "47.867", "Metallo di Transizione", false, "[Ar] 3d<sup>2</sup> 4s<sup>2</sup>"],
+    [4, 5, 23, "V", "Vanadio", "50.942", "Metallo di Transizione", false, "[Ar] 3d<sup>3</sup> 4s<sup>2</sup>"],
+    [4, 6, 24, "Cr", "Cromo", "51.996", "Metallo di Transizione", false, "[Ar] 3d<sup>5</sup> 4s<sup>1</sup>"],
+    [4, 7, 25, "Mn", "Manganese", "54.938", "Metallo di Transizione", false, "[Ar] 3d<sup>5</sup> 4s<sup>2</sup>"],
+    [4, 8, 26, "Fe", "Ferro", "55.845", "Metallo di Transizione", false, "[Ar] 3d<sup>6</sup> 4s<sup>2</sup>"],
+    [4, 9, 27, "Co", "Cobalto", "58.933", "Metallo di Transizione", false, "[Ar] 3d<sup>7</sup> 4s<sup>2</sup>"],
+    [4, 10, 28, "Ni", "Nichel", "58.693", "Metallo di Transizione", false, "[Ar] 3d<sup>8</sup> 4s<sup>2</sup>"],
+    [4, 11, 29, "Cu", "Rame", "63.546", "Metallo di Transizione", false, "[Ar] 3d<sup>10</sup> 4s<sup>1</sup>"],
+    [5, 3, 39, "Y", "Ittrio", "88.906", "Metallo di Transizione", false, "[Kr] 4d<sup>1</sup> 5s<sup>2</sup>"],
+    [5, 4, 40, "Zr", "Zirconio", "91.224", "Metallo di Transizione", false, "[Kr] 4d<sup>2</sup> 5s<sup>2</sup>"],
+    [5, 5, 41, "Nb", "Niobio", "92.906", "Metallo di Transizione", false, "[Kr] 4d<sup>4</sup> 5s<sup>1</sup>"],
+    [5, 6, 42, "Mo", "Molibdeno", "95.95", "Metallo di Transizione", false, "[Kr] 4d<sup>5</sup> 5s<sup>1</sup>"],
+    [5, 7, 43, "Tc", "Tecnezio", "(98)", "Metallo di Transizione", true, "[Kr] 4d5<sup> </sup>5s<sup>2</sup>"],
+    [5, 8, 44, "Ru", "Rutenio", "101.07", "Metallo di Transizione", false, "[Kr] 4d<sup>7</sup> 5s<sup>1</sup>"],
+    [5, 9, 45, "Rh", "Rodio", "102.91", "Metallo di Transizione", false, "[Kr] 4d<sup>8</sup> 5s<sup>1</sup>"],
+    [5, 10, 46, "Pd", "Palladio", "106.42", "Metallo di Transizione", false, "[Kr] 4d<sup>10</sup>"],
     [5, 11, 47, "Ag", "Argento", "107.87", "Metallo di Transizione"],
     [6, 4, 72, "Hf", "Afnio", "178.49", "Metallo di Transizione"],
     [6, 5, 73, "Ta", "Tantalio", "180.95", "Metallo di Transizione"],
     [6, 6, 74, "W", "Tungsteno", "183.84", "Metallo di Transizione"],
     [6, 7, 75, "Re", "Renio", "186.21", "Metallo di Transizione"],
     [6, 8, 76, "Os", "Osmio", "190.23", "Metallo di Transizione"],
-    [6, 9, 77, "Ir", "Iridio", "192.22", "Metallo di Transizione", false, "[Xe] 4f14 5d7 6s2"],
-    [6, 10, 78, "Pt", "Platino", "195.08", "Metallo di Transizione", false, "[Xe] 4f14 5d9 6s1"],
-    [6, 11, 79, "Au", "Oro", "196.97", "Metallo di Transizione", false, "[Xe] 4f14 5d10 6s1"],
+    [6, 9, 77, "Ir", "Iridio", "192.22", "Metallo di Transizione", false, "[Xe] 4f<sup>14</sup> 5d<sup>7</sup> 6s<sup>2</sup>"],
+    [6, 10, 78, "Pt", "Platino", "195.08", "Metallo di Transizione", false, "[Xe] 4f<sup>14</sup> 5d<sup>9</sub> 6s<sub>1</sub>"],
+    [6, 11, 79, "Au", "Oro", "196.97", "Metallo di Transizione", false, "[Xe] 4f<sup>14</sup> 5d<sup>10</sup> 6s<sup>1</sup>"],
     [7, 4, 104, "Rf", "Rutherfordio", "(267)", "Metallo di Transizione", true],
     [7, 5, 105, "Db", "Dubnio", "(270)", "Metallo di Transizione", true],
     [7, 6, 106, "Sg", "Seaborgio", "(271)", "Metallo di Transizione", true],
@@ -278,7 +278,7 @@ var it = [
     [8, 12, 66, "Dy", "Disprosio", "162.50", "Lantanide"],
     [8, 13, 67, "Ho", "Olmio", "164.93", "Lantanide"],
     [8, 14, 68, "Er", "Erbio", "167.26", "Lantanide"],
-    [8, 15, 69, "Tm", "Tulio", "168.93", "Lantanide", false, "[Xe] 4f13 6s2"],
+    [8, 15, 69, "Tm", "Tulio", "168.93", "Lantanide", false, "[Xe] 4f<sup>13</sup> 6s<sup>2</sup>"],
     [8, 16, 70, "Yb", "Itterbio", "173.05", "Lantanide"],
     [8, 17, 71, "Lu", "Lutezio", "174.97", "Lantanide"],
 
@@ -305,7 +305,7 @@ var it = [
     [7, 15, 115, "Mc", "Moscovio", "(290)", "Sconosciuto", true]
 ]
 
-var ro = [
+const ro = [
     [1, 1, 1, "H", "Hidrogen", "1.008", "Nemetal"],
     [2, 14, 6, "C", "Carbon", "12.011", "Nemetal"],
     [2, 15, 7, "N", "Azot", "14.007", "Nemetal"],
@@ -336,32 +336,32 @@ var ro = [
     [6, 2, 56, "Ba", "Bariu", "137.33", "Metal alcalino-pamantos"],
     [7, 2, 88, "Ra", "Radiu", "(226)", "Metal alcalino-pamantos", true],
 
-    [4, 3, 21, "Sc", "Scandiu", "44.956", "Metal de tranzitie", false, "[Ar] 3d1 4s2"],
-    [4, 4, 22, "Ti", "Titan", "47.867", "Metal de tranzitie", false, "[Ar] 3d2 4s2"],
-    [4, 5, 23, "V", "Vanadiu", "50.942", "Metal de tranzitie", false, "[Ar] 3d3 4s2"],
-    [4, 6, 24, "Cr", "Crom", "51.996", "Metal de tranzitie", false, "[Ar] 3d5 4s1"],
-    [4, 7, 25, "Mn", "Mangan", "54.938", "Metal de tranzitie", false, "[Ar] 3d5 4s2"],
-    [4, 8, 26, "Fe", "Fier", "55.845", "Metal de tranzitie", false, "[Ar] 3d6 4s2"],
-    [4, 9, 27, "Co", "Cobalt", "58.933", "Metal de tranzitie", false, "[Ar] 3d7 4s2"],
-    [4, 10, 28, "Ni", "Nichel", "58.693", "Metal de tranzitie", false, "[Ar] 3d8 4s2"],
-    [4, 11, 29, "Cu", "Cupru", "63.546", "Metal de tranzitie", false, "[Ar] 3d10 4s1"],
-    [5, 3, 39, "Y", "Ytriu", "88.906", "Metal de tranzitie", false, "[Kr] 4d1 5s2"],
-    [5, 4, 40, "Zr", "Zirconiu", "91.224", "Metal de tranzitie", false, "[Kr] 4d2 5s2"],
-    [5, 5, 41, "Nb", "Niobiu", "92.906", "Metal de tranzitie", false, "[Kr] 4d4 5s1"],
-    [5, 6, 42, "Mo", "Molibden", "95.95", "Metal de tranzitie", false, "[Kr] 4d5 5s1"],
-    [5, 7, 43, "Tc", "Tehnețiu", "(98)", "Metal de tranzitie", true, "[Kr] 4d5 5s2"],
-    [5, 8, 44, "Ru", "Ruteniu", "101.07", "Metal de tranzitie", false, "[Kr] 4d7 5s1"],
-    [5, 9, 45, "Rh", "Rodiu", "102.91", "Metal de tranzitie", false, "[Kr] 4d8 5s1"],
-    [5, 10, 46, "Pd", "Paladiu", "106.42", "Metal de tranzitie", false, "[Kr] 4d10"],
+    [4, 3, 21, "Sc", "Scandiu", "44.956", "Metal de tranzitie", false, "[Ar] 3d<sup>1</sup> 4s<sup>2</sup>"],
+    [4, 4, 22, "Ti", "Titan", "47.867", "Metal de tranzitie", false, "[Ar] 3d<sup>2</sup> 4s<sup>2</sup>"],
+    [4, 5, 23, "V", "Vanadiu", "50.942", "Metal de tranzitie", false, "[Ar] 3d<sup>3</sup> 4s<sup>2</sup>"],
+    [4, 6, 24, "Cr", "Crom", "51.996", "Metal de tranzitie", false, "[Ar] 3d<sup>5</sup> 4s<sup>1</sup>"],
+    [4, 7, 25, "Mn", "Mangan", "54.938", "Metal de tranzitie", false, "[Ar] 3d<sup>5</sup> 4s<sup>2</sup>"],
+    [4, 8, 26, "Fe", "Fier", "55.845", "Metal de tranzitie", false, "[Ar] 3d<sup>6</sup> 4s<sup>2</sup>"],
+    [4, 9, 27, "Co", "Cobalt", "58.933", "Metal de tranzitie", false, "[Ar] 3d<sup>7</sup> 4s<sup>2</sup>"],
+    [4, 10, 28, "Ni", "Nichel", "58.693", "Metal de tranzitie", false, "[Ar] 3d<sup>8</sup> 4s<sup>2</sup>"],
+    [4, 11, 29, "Cu", "Cupru", "63.546", "Metal de tranzitie", false, "[Ar] 3d<sup>10</sup> 4s<sup>1</sup>"],
+    [5, 3, 39, "Y", "Ytriu", "88.906", "Metal de tranzitie", false, "[Kr] 4d<sup>1</sup> 5s<sup>2</sup>"],
+    [5, 4, 40, "Zr", "Zirconiu", "91.224", "Metal de tranzitie", false, "[Kr] 4d<sup>2</sup> 5s<sup>2</sup>"],
+    [5, 5, 41, "Nb", "Niobiu", "92.906", "Metal de tranzitie", false, "[Kr] 4d<sup>4</sup> 5s<sup>1</sup>"],
+    [5, 6, 42, "Mo", "Molibden", "95.95", "Metal de tranzitie", false, "[Kr] 4d<sup>5</sup> 5s<sup>1</sup>"],
+    [5, 7, 43, "Tc", "Tehnețiu", "(98)", "Metal de tranzitie", true, "[Kr] 4d<sup>5</sup> 5s<sup>2</sup>"],
+    [5, 8, 44, "Ru", "Ruteniu", "101.07", "Metal de tranzitie", false, "[Kr] 4d<sup>7</sup> 5s<sup>1</sup>"],
+    [5, 9, 45, "Rh", "Rodiu", "102.91", "Metal de tranzitie", false, "[Kr] 4d<sup>8</sup> 5s<sup>1</sup>"],
+    [5, 10, 46, "Pd", "Paladiu", "106.42", "Metal de tranzitie", false, "[Kr] 4d<sup>10</sup>"],
     [5, 11, 47, "Ag", "Argint", "107.87", "Metal de tranzitie"],
     [6, 4, 72, "Hf", "Hafniu", "178.49", "Metal de tranzitie"],
     [6, 5, 73, "Ta", "Tantal", "180.95", "Metal de tranzitie"],
     [6, 6, 74, "W", "Wolfram", "183.84", "Metal de tranzitie"],
     [6, 7, 75, "Re", "Reniu", "186.21", "Metal de tranzitie"],
     [6, 8, 76, "Os", "Osmiu", "190.23", "Metal de tranzitie"],
-    [6, 9, 77, "Ir", "Iridiu", "192.22", "Metal de tranzitie", false, "[Xe] 4f14 5d7 6s2"],
-    [6, 10, 78, "Pt", "Platină", "195.08", "Metal de tranzitie", false, "[Xe] 4f14 5d9 6s1"],
-    [6, 11, 79, "Au", "Aur", "196.97", "Metal de tranzitie", false, "[Xe] 4f14 5d10 6s1"],
+    [6, 9, 77, "Ir", "Iridiu", "192.22", "Metal de tranzitie", false, "[Xe] 4f<sup>14</sup> 5d<sup>7</sup> 6s<sup>2</sup>"],
+    [6, 10, 78, "Pt", "Platină", "195.08", "Metal de tranzitie", false, "[Xe] 4f<sup>14</sup> 5d<sup>9</sub> 6s<sub>1</sub>"],
+    [6, 11, 79, "Au", "Aur", "196.97", "Metal de tranzitie", false, "[Xe] 4f<sup>14</sup> 5d<sup>10</sup> 6s<sup>1</sup>"],
     [7, 4, 104, "Rf", "Rutherfordiu", "(267)", "Metal de tranzitie", true],
     [7, 5, 105, "Db", "Dubniu", "(270)", "Metal de tranzitie", true],
     [7, 6, 106, "Sg", "Seaborgiu", "(271)", "Metal de tranzitie", true],
@@ -409,7 +409,7 @@ var ro = [
     [8, 12, 66, "Dy", "Disprosiu", "162.50", "Lantanid"],
     [8, 13, 67, "Ho", "Holmiu", "164.93", "Lantanid"],
     [8, 14, 68, "Er", "Erbiu", "167.26", "Lantanid"],
-    [8, 15, 69, "Tm", "Tuliu", "168.93", "Lantanid", false, "[Xe] 4f13 6s2"],
+    [8, 15, 69, "Tm", "Tuliu", "168.93", "Lantanid", false, "[Xe] 4f<sup>13</sup> 6s<sup>2</sup>"],
     [8, 16, 70, "Yb", "Yterbiu", "173.05", "Lantanid"],
     [8, 17, 71, "Lu", "Luteciu", "174.97", "Lantanid"],
 
@@ -575,19 +575,3 @@ const numossidi = [
     { n: 117, ox: "-" },
     { n: 118, ox: "-" }
 ];
-
-//page script
-//i'll replace this if not optimized
-function ahg() {
-    document.querySelectorAll('.cell').forEach(x => {
-        x.addEventListener('mouseenter', () => {
-            const fg = x.getAttribute('g'); const fp = x.getAttribute('p');
-            if (fg && fp) {
-                document.querySelectorAll(`.group[g="${fg}"], .period[p="${fp}"]`)?.forEach(z => z.classList.add('hg'));
-            }
-        });
-        x.addEventListener('mouseleave', () => {
-            document.querySelectorAll('.hg').forEach(y => y.classList.remove('hg'));
-        });
-    });
-}
