@@ -42,7 +42,7 @@ const strings = {
   aufbau, spesso perchè questo rende l'elemento più stabile, come specificato nelle eccezioni della regola di Madelung, (simile al principio di aufabu, ma un po' più complicato)
   Questo accade principalmente negli attinidi e lantanidi, in sottolivelli come d e f, che tendono ad essere più stabili se non pieni
 */
-var en = [
+const en = [
     //wire 
     //[0, 0, 0, "Wi", "Wire", "1", "Conductor according to mr white", false, "[Og] 5g<sup>28</sup>"]
     [1, 1, 1, "H", "Hydrogen", "1.008", "Nonmetal"],
@@ -174,7 +174,7 @@ var en = [
     [7, 13, 113, "Nh", "Nihonium", "(286)", "Unknown", true],
     [7, 15, 115, "Mc", "Moscovium", "(290)", "Unknown", true]
 ];
-var it = [
+const it = [
     [1, 1, 1, "H", "Idrogeno", "1.008", "Non Metallo"],
     [2, 14, 6, "C", "Carbonio", "12.011", "Non Metallo"],
     [2, 15, 7, "N", "Azoto", "14.007", "Non Metallo"],
@@ -305,7 +305,7 @@ var it = [
     [7, 15, 115, "Mc", "Moscovio", "(290)", "Sconosciuto", true]
 ]
 
-var ro = [
+const ro = [
     [1, 1, 1, "H", "Hidrogen", "1.008", "Nemetal"],
     [2, 14, 6, "C", "Carbon", "12.011", "Nemetal"],
     [2, 15, 7, "N", "Azot", "14.007", "Nemetal"],
