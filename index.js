@@ -42,9 +42,10 @@ const strings = {
   aufbau, spesso perchè questo rende l'elemento più stabile, come specificato nelle eccezioni della regola di Madelung, (simile al principio di aufabu, ma un po' più complicato)
   Questo accade principalmente negli attinidi e lantanidi, in sottolivelli come d e f, che tendono ad essere più stabili se non pieni
 */
-const en = [
+var en = [
     //wire 
     //[0, 0, 0, "Wi", "Wire", "1", "Conductor according to mr white", false, "[Og] 5g<sup>28</sup>"]
+    // Nonmetals
     [1, 1, 1, "H", "Hydrogen", "1.008", "Nonmetal"],
     [2, 14, 6, "C", "Carbon", "12.011", "Nonmetal"],
     [2, 15, 7, "N", "Nitrogen", "14.007", "Nonmetal"],
@@ -53,6 +54,7 @@ const en = [
     [3, 16, 16, "S", "Sulfur", "32.06", "Nonmetal"],
     [4, 16, 34, "Se", "Selenium", "78.971", "Nonmetal"],
 
+    // Noble Gases
     [1, 18, 2, "He", "Helium", "4.0026", "Noble Gas"],
     [2, 18, 10, "Ne", "Neon", "20.180", "Noble Gas"],
     [3, 18, 18, "Ar", "Argon", "39.948", "Noble Gas"],
@@ -61,6 +63,7 @@ const en = [
     [6, 18, 86, "Rn", "Radon", "(222)", "Noble Gas", true],
     [7, 18, 118, "Og", "Oganesson", "(294)", "Noble Gas", true],
 
+    // Alkali Metals
     [2, 1, 3, "Li", "Lithium", "6.94", "Alkali Metal"],
     [3, 1, 11, "Na", "Sodium", "22.990", "Alkali Metal"],
     [4, 1, 19, "K", "Potassium", "39.098", "Alkali Metal", true],
@@ -68,6 +71,7 @@ const en = [
     [6, 1, 55, "Cs", "Cesium", "132.91", "Alkali Metal"],
     [7, 1, 87, "Fr", "Francium", "(223)", "Alkali Metal", true],
 
+    // Alkaline Earth Metals
     [2, 2, 4, "Be", "Beryllium", "9.0122", "Alkaline Earth Metal"],
     [3, 2, 12, "Mg", "Magnesium", "24.305", "Alkaline Earth Metal"],
     [4, 2, 20, "Ca", "Calcium", "40.078", "Alkaline Earth Metal"],
@@ -75,6 +79,7 @@ const en = [
     [6, 2, 56, "Ba", "Barium", "137.33", "Alkaline Earth Metal"],
     [7, 2, 88, "Ra", "Radium", "(226)", "Alkaline Earth Metal", true],
 
+    // Transition Metals
     [4, 3, 21, "Sc", "Scandium", "44.956", "Transition Metal", false, "[Ar] 3d<sup>1</sup> 4s<sup>2</sup>"],
     [4, 4, 22, "Ti", "Titanium", "47.867", "Transition Metal", false, "[Ar] 3d<sup>2</sup> 4s<sup>2</sup>"],
     [4, 5, 23, "V", "Vanadium", "50.942", "Transition Metal", false, "[Ar] 3d<sup>3</sup> 4s<sup>2</sup>"],
@@ -107,6 +112,7 @@ const en = [
     [7, 7, 107, "Bh", "Bohrium", "(270)", "Transition Metal", true],
     [7, 8, 108, "Hs", "Hassium", "(277)", "Transition Metal", true],
 
+    // Post-transition Metals
     [3, 13, 13, "Al", "Aluminum", "26.982", "Post-transition Metal"],
     [4, 12, 30, "Zn", "Zinc", "65.38", "Post-transition Metal"],
     [4, 13, 31, "Ga", "Gallium", "69.723", "Post-transition Metal"],
@@ -122,6 +128,7 @@ const en = [
     [7, 14, 114, "Fl", "Flerovium", "(289)", "Unknown", true],
     [7, 16, 116, "Lv", "Livermorium", "(293)", "Unknown", true],
 
+    // Metalloids
     [2, 13, 5, "B", "Boron", "10.81", "Metalloid"],
     [3, 14, 14, "Si", "Silicon", "28.085", "Metalloid"],
     [4, 14, 32, "Ge", "Germanium", "72.630", "Metalloid"],
@@ -129,6 +136,7 @@ const en = [
     [5, 15, 51, "Sb", "Antimony", "121.76", "Metalloid"],
     [5, 16, 52, "Te", "Tellurium", "127.60", "Metalloid"],
 
+    // Halogens
     [2, 17, 9, "F", "Fluorine", "18.998", "Halogen"],
     [3, 17, 17, "Cl", "Chlorine", "35.45", "Halogen"],
     [4, 17, 35, "Br", "Bromine", "79.904", "Halogen"],
@@ -136,6 +144,7 @@ const en = [
     [6, 17, 85, "At", "Astatine", "(210)", "Halogen", true],
     [7, 17, 117, "Ts", "Tennessine", "(294)", "Unknown", true],
 
+    // Lanthanides
     [6, 3, 57, "La", "Lanthanum", "138.91", "Lanthanide"],
     [8, 4, 58, "Ce", "Cerium", "140.12", "Lanthanide"],
     [8, 5, 59, "Pr", "Praseodymium", "140.91", "Lanthanide"],
@@ -152,6 +161,7 @@ const en = [
     [8, 16, 70, "Yb", "Ytterbium", "173.05", "Lanthanide"],
     [8, 17, 71, "Lu", "Lutetium", "174.97", "Lanthanide"],
 
+    // Actinides
     [7, 3, 89, "Ac", "Actinium", "(227)", "Actinide", true],
     [9, 4, 90, "Th", "Thorium", "232.04", "Actinide", true],
     [9, 5, 91, "Pa", "Protactinium", "231.04", "Actinide", true],
@@ -168,13 +178,14 @@ const en = [
     [9, 16, 102, "No", "Nobelium", "(259)", "Actinide", true],
     [9, 17, 103, "Lr", "Lawrencium", "(266)", "Actinide", true],
 
+    // Unknown
     [7, 9, 109, "Mt", "Meitnerium", "(278)", "Unknown", true],
     [7, 10, 110, "Ds", "Darmstadtium", "(281)", "Unknown", true],
     [7, 11, 111, "Rg", "Roentgenium", "(282)", "Unknown", true],
     [7, 13, 113, "Nh", "Nihonium", "(286)", "Unknown", true],
     [7, 15, 115, "Mc", "Moscovium", "(290)", "Unknown", true]
 ];
-const it = [
+var it = [
     [1, 1, 1, "H", "Idrogeno", "1.008", "Non Metallo"],
     [2, 14, 6, "C", "Carbonio", "12.011", "Non Metallo"],
     [2, 15, 7, "N", "Azoto", "14.007", "Non Metallo"],
@@ -183,6 +194,7 @@ const it = [
     [3, 16, 16, "S", "Zolfo", "32.06", "Non Metallo"],
     [4, 16, 34, "Se", "Selenio", "78.971", "Non Metallo"],
 
+    // Gas Nobili
     [1, 18, 2, "He", "Elio", "4.0026", "Gas Nobile"],
     [2, 18, 10, "Ne", "Neon", "20.180", "Gas Nobile"],
     [3, 18, 18, "Ar", "Argon", "39.948", "Gas Nobile"],
@@ -191,6 +203,7 @@ const it = [
     [6, 18, 86, "Rn", "Radon", "(222)", "Gas Nobile", true],
     [7, 18, 118, "Og", "Oganesson", "(294)", "Gas Nobile", true],
 
+    // Metalli Alcalini
     [2, 1, 3, "Li", "Litio", "6.94", "Metallo Alcalino"],
     [3, 1, 11, "Na", "Sodio", "22.990", "Metallo Alcalino"],
     [4, 1, 19, "K", "Potassio", "39.098", "Metallo Alcalino", true],
@@ -198,6 +211,7 @@ const it = [
     [6, 1, 55, "Cs", "Cesio", "132.91", "Metallo Alcalino"],
     [7, 1, 87, "Fr", "Francio", "(223)", "Metallo Alcalino", true],
 
+    // Metalli Alcalino Terrosi
     [2, 2, 4, "Be", "Berillio", "9.0122", "Metallo Alcalino Terroso"],
     [3, 2, 12, "Mg", "Magnesio", "24.305", "Metallo Alcalino Terroso"],
     [4, 2, 20, "Ca", "Calcio", "40.078", "Metallo Alcalino Terroso"],
@@ -205,6 +219,7 @@ const it = [
     [6, 2, 56, "Ba", "Bario", "137.33", "Metallo Alcalino Terroso"],
     [7, 2, 88, "Ra", "Radio", "(226)", "Metallo Alcalino Terroso", true],
 
+    // Metalli di Transizione
     [4, 3, 21, "Sc", "Scandio", "44.956", "Metallo di Transizione", false, "[Ar] 3d<sup>1</sup> 4s<sup>2</sup>"],
     [4, 4, 22, "Ti", "Titanio", "47.867", "Metallo di Transizione", false, "[Ar] 3d<sup>2</sup> 4s<sup>2</sup>"],
     [4, 5, 23, "V", "Vanadio", "50.942", "Metallo di Transizione", false, "[Ar] 3d<sup>3</sup> 4s<sup>2</sup>"],
@@ -237,6 +252,7 @@ const it = [
     [7, 7, 107, "Bh", "Bohrio", "(270)", "Metallo di Transizione", true],
     [7, 8, 108, "Hs", "Hassio", "(277)", "Metallo di Transizione", true],
 
+    // Metalli di Post-Transizione
     [3, 13, 13, "Al", "Alluminio", "26.982", "Metallo Post-Transizione"],
     [4, 12, 30, "Zn", "Zinco", "65.38", "Metallo Post-Transizione"],
     [4, 13, 31, "Ga", "Gallio", "69.723", "Metallo Post-Transizione"],
@@ -252,6 +268,7 @@ const it = [
     [7, 14, 114, "Fl", "Flerovio", "(289)", "Metallo Post-Transizione", true],
     [7, 16, 116, "Lv", "Livermorio", "(293)", "Metallo Post-Transizione", true],
 
+    // Metalloidi
     [2, 13, 5, "B", "Boro", "10.81", "Metalloide"],
     [3, 14, 14, "Si", "Silicio", "28.085", "Metalloide"],
     [4, 14, 32, "Ge", "Germanio", "72.630", "Metalloide"],
@@ -259,6 +276,7 @@ const it = [
     [5, 15, 51, "Sb", "Antimonio", "121.76", "Metalloide"],
     [5, 16, 52, "Te", "Tellurio", "127.60", "Metalloide"],
 
+    // Alogeni
     [2, 17, 9, "F", "Fluoro", "18.998", "Alogeno"],
     [3, 17, 17, "Cl", "Cloro", "35.45", "Alogeno"],
     [4, 17, 35, "Br", "Bromo", "79.904", "Alogeno"],
@@ -266,6 +284,7 @@ const it = [
     [6, 17, 85, "At", "Astato", "(210)", "Alogeno", true],
     [7, 17, 117, "Ts", "Tenessino", "(294)", "Sconosciuto", true],
 
+    // Lantanidi
     [6, 3, 57, "La", "Lantanio", "138.91", "Lantanide"],
     [8, 4, 58, "Ce", "Cerio", "140.12", "Lantanide"],
     [8, 5, 59, "Pr", "Praseodimio", "140.91", "Lantanide"],
@@ -282,6 +301,7 @@ const it = [
     [8, 16, 70, "Yb", "Itterbio", "173.05", "Lantanide"],
     [8, 17, 71, "Lu", "Lutezio", "174.97", "Lantanide"],
 
+    // Attinidi
     [7, 3, 89, "Ac", "Attinio", "(227)", "Attinide", true],
     [9, 4, 90, "Th", "Torio", "232.04", "Attinide", true],
     [9, 5, 91, "Pa", "Protoattinio", "231.04", "Attinide", true],
@@ -298,6 +318,7 @@ const it = [
     [9, 16, 102, "No", "Nobelio", "(259)", "Attinide", true],
     [9, 17, 103, "Lr", "Laurenzio", "(266)", "Attinide", true],
 
+    // Sconosciuti
     [7, 9, 109, "Mt", "Meitnerio", "(278)", "Sconosciuto", true],
     [7, 10, 110, "Ds", "Darmstadtio", "(281)", "Sconosciuto", true],
     [7, 11, 111, "Rg", "Roentgenio", "(282)", "Sconosciuto", true],
@@ -305,7 +326,8 @@ const it = [
     [7, 15, 115, "Mc", "Moscovio", "(290)", "Sconosciuto", true]
 ]
 
-const ro = [
+var ro = [
+    // Nemetalice
     [1, 1, 1, "H", "Hidrogen", "1.008", "Nemetal"],
     [2, 14, 6, "C", "Carbon", "12.011", "Nemetal"],
     [2, 15, 7, "N", "Azot", "14.007", "Nemetal"],
@@ -314,6 +336,7 @@ const ro = [
     [3, 16, 16, "S", "Sulf", "32.06", "Nemetal"],
     [4, 16, 34, "Se", "Seleniu", "78.971", "Nemetal"],
 
+    // Gaze nobile
     [1, 18, 2, "He", "Heliu", "4.0026", "Gaz nobil"],
     [2, 18, 10, "Ne", "Neon", "20.180", "Gaz nobil"],
     [3, 18, 18, "Ar", "Argon", "39.948", "Gaz nobil"],
@@ -322,6 +345,7 @@ const ro = [
     [6, 18, 86, "Rn", "Radon", "(222)", "Gaz nobil", true],
     [7, 18, 118, "Og", "Oganesson", "(294)", "Gaz nobil", true],
 
+    // Metale alcaline
     [2, 1, 3, "Li", "Litiu", "6.94", "Metal alcalin"],
     [3, 1, 11, "Na", "Sodiu", "22.990", "Metal alcalin"],
     [4, 1, 19, "K", "Potasiu", "39.098", "Metal alcalin", true],
@@ -329,6 +353,7 @@ const ro = [
     [6, 1, 55, "Cs", "Cesiu", "132.91", "Metal alcalin"],
     [7, 1, 87, "Fr", "Franciu", "(223)", "Metal alcalin", true],
 
+    // Metale alcalino-pamantoase
     [2, 2, 4, "Be", "Beriliu", "9.0122", "Metal alcalino-pamantos"],
     [3, 2, 12, "Mg", "Magneziu", "24.305", "Metal alcalino-pamantos"],
     [4, 2, 20, "Ca", "Calciu", "40.078", "Metal alcalino-pamantos"],
@@ -336,6 +361,7 @@ const ro = [
     [6, 2, 56, "Ba", "Bariu", "137.33", "Metal alcalino-pamantos"],
     [7, 2, 88, "Ra", "Radiu", "(226)", "Metal alcalino-pamantos", true],
 
+    // Metale de tranzitie
     [4, 3, 21, "Sc", "Scandiu", "44.956", "Metal de tranzitie", false, "[Ar] 3d<sup>1</sup> 4s<sup>2</sup>"],
     [4, 4, 22, "Ti", "Titan", "47.867", "Metal de tranzitie", false, "[Ar] 3d<sup>2</sup> 4s<sup>2</sup>"],
     [4, 5, 23, "V", "Vanadiu", "50.942", "Metal de tranzitie", false, "[Ar] 3d<sup>3</sup> 4s<sup>2</sup>"],
@@ -368,6 +394,7 @@ const ro = [
     [7, 7, 107, "Bh", "Bohr", "(270)", "Metal de tranzitie", true],
     [7, 8, 108, "Hs", "Hassiu", "(277)", "Metal de tranzitie", true],
 
+    // Metale post-tranzitie
     [3, 13, 13, "Al", "Aluminiu", "26.982", "Metal post-tranzitie"],
     [4, 12, 30, "Zn", "Zinc", "65.38", "Metal post-tranzitie"],
     [4, 13, 31, "Ga", "Galiu", "69.723", "Metal post-tranzitie"],
@@ -383,6 +410,7 @@ const ro = [
     [7, 14, 114, "Fl", "Fleroviu", "(289)", "Necunoscut", true],
     [7, 16, 116, "Lv", "Livermoriu", "(293)", "Necunoscut", true],
 
+    // Metaloizi
     [2, 13, 5, "B", "Bor", "10.81", "Metaloid"],
     [3, 14, 14, "Si", "Siliciu", "28.085", "Metaloid"],
     [4, 14, 32, "Ge", "Germaniu", "72.630", "Metaloid"],
@@ -390,6 +418,7 @@ const ro = [
     [5, 15, 51, "Sb", "Stibiu", "121.76", "Metaloid"],
     [5, 16, 52, "Te", "Telur", "127.60", "Metaloid"],
 
+    // Halogeni
     [2, 17, 9, "F", "Fluor", "18.998", "Halogen"],
     [3, 17, 17, "Cl", "Clor", "35.45", "Halogen"],
     [4, 17, 35, "Br", "Brom", "79.904", "Halogen"],
@@ -397,6 +426,7 @@ const ro = [
     [6, 17, 85, "At", "Astatin", "(210)", "Halogen", true],
     [7, 17, 117, "Ts", "Tenesin", "(294)", "Necunoscut", true],
 
+    // Lantanide
     [6, 3, 57, "La", "Lantan", "138.91", "Lantanid"],
     [8, 4, 58, "Ce", "Ceriu", "140.12", "Lantanid"],
     [8, 5, 59, "Pr", "Praseodim", "140.91", "Lantanid"],
@@ -413,6 +443,7 @@ const ro = [
     [8, 16, 70, "Yb", "Yterbiu", "173.05", "Lantanid"],
     [8, 17, 71, "Lu", "Luteciu", "174.97", "Lantanid"],
 
+    // Actinide
     [7, 3, 89, "Ac", "Actiniu", "(227)", "Actinid", true],
     [9, 4, 90, "Th", "Toriu", "232.04", "Actinid", true],
     [9, 5, 91, "Pa", "Protactiniu", "231.04", "Actinid", true],
@@ -429,6 +460,7 @@ const ro = [
     [9, 16, 102, "No", "Nobeliu", "(259)", "Actinid", true],
     [9, 17, 103, "Lr", "Laurenciu", "(266)", "Actinid", true],
 
+    // Necunoscut
     [7, 9, 109, "Mt", "Meitneriu", "(278)", "Necunoscut", true],
     [7, 10, 110, "Ds", "Darmstadtiu", "(281)", "Necunoscut", true],
     [7, 11, 111, "Rg", "Roentgeniu", "(282)", "Necunoscut", true],
@@ -575,3 +607,19 @@ const numossidi = [
     { n: 117, ox: "-" },
     { n: 118, ox: "-" }
 ];
+
+//page script
+//i'll replace this if not optimized
+function ahg() {
+    document.querySelectorAll('.cell').forEach(x => {
+        x.addEventListener('mouseenter', () => {
+            const fg = x.getAttribute('g'); const fp = x.getAttribute('p');
+            if (fg && fp) {
+                document.querySelectorAll(`.group[g="${fg}"], .period[p="${fp}"]`)?.forEach(z => z.classList.add('hg'));
+            }
+        });
+        x.addEventListener('mouseleave', () => {
+            document.querySelectorAll('.hg').forEach(y => y.classList.remove('hg'));
+        });
+    });
+}
