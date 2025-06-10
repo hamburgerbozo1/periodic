@@ -249,7 +249,7 @@
                 try {
                     const lang = localStorage.getItem('per-lang');
                     if(lang) {
-                        try { load(window[lang], lang); } catch(e) { load(en, 'en'); }
+                        try { load(window[lang], lang); } catch(e) { console.log(e); load(en, 'en'); }
                     } else {
                         load(en, 'en');
                     }
