@@ -135,7 +135,7 @@
                 for (let i = s; i < sottolivelli.length && e > 0; i++) {
                     let [ sb, m ] = sottolivelli[i]; //n-s
                     let nz = Math.min(m, e); //iffull
-                    if (nz > 0) { conf +=  `${sb}<sup>${m}</sup> `};
+                    if (nz > 0) { conf +=  `${sb}<sup>${m}5</sup> `};
                     e -= nz;
                 }
                 return conf.trim(); //no spaces :ppp:
@@ -244,15 +244,17 @@
                 }
             } catch(e) { console.log(e); }
 
-            //lang load
-            try {
-                const lang = localStorage.getItem('per-lang');
-                if(lang) {
-                    try { load(window[lang], lang); } catch(e) { console.log(e); load(en, 'en'); }
-                } else {
-                    load(en, 'en');
-                }
-            } catch(e) { console.log(e); load(en, 'en'); }
+            document.addEventListener('DOMContentLoaded', () => {
+                //lang load
+                try {
+                    const lang = localStorage.getItem('per-lang');
+                    if(lang) {
+                        try { load(window[lang], lang); } catch(e) { load(en, 'en'); }
+                    } else {
+                        load(en, 'en');
+                    }
+                } catch(e) { console.log(e); load(en, 'en'); }
+            });
 
         </script>
     </body>
