@@ -67,7 +67,7 @@
             const cellFormat = [...Array(9)].map(() => Array(18).fill(0)); //19-18 - row+1
 
             //nessun blocco try principale perche la funzione è corta, ed è molto difficile che non riesca a trovare un elemento (html)
-            function load(lang, str) {
+            function load(lang, str, ow) {
                 currentlang = strings[str]; if(!table) { return; }
                 table.innerHTML = '';
 
@@ -78,8 +78,10 @@
                     document.title = currentlang.title; delay = 0;
                     document.getElementById('titlebar').textContent = currentlang.title;
                     document.getElementById('lang-btn').textContent = '🌐 ' + str.toUpperCase();
-                    localStorage.removeItem('per-lang'); //owf
-                    localStorage.setItem('per-lang', str);
+                    if (!ow) {
+                        localStorage.removeItem('per-lang'); //owf
+                        localStorage.setItem('per-lang', str);
+                    }
                     document.documentElement.lang = str;
                 } catch(e) {console.log(e); }
                 //x element
@@ -234,7 +236,7 @@
             } );
 
             //init
-
+            
             //load saved theme, wont put lang here so if it gets an error it wont fail everything
             try {
                 const st = localStorage.getItem('per-theme');
@@ -245,14 +247,20 @@
             } catch(e) { console.log(e); }
 
             //lang load
-            try {
-                const lang = localStorage.getItem('per-lang');
-                if(lang) {
-                    try { load(window[lang], lang); } catch(e) { console.log(e); load(en, 'en'); }
-                } else {
-                    load(en, 'en');
-                }
-            } catch(e) { console.log(e); load(en, 'en'); }
+            const pm = new URLSearchParams(window.location.search);
+            const lg = pm.get('lang');
+            if(lg && lg == 'it' || lg == 'en' || lg == 'ro') { //NOT adding a dictionary for this.
+                try { load(window[lg], lg, true); } catch(e) { console.log(e); load(en, 'en', true); }
+            } else {
+                try {
+                    const lang = localStorage.getItem('per-lang');
+                    if(lang) {
+                        try { load(window[lang], lang); } catch(e) { console.log(e); load(en, 'en'); }
+                    } else {
+                        load(en, 'en');
+                    }
+                } catch(e) { console.log(e); load(en, 'en'); }
+            }
 
         </script>
     </body>
